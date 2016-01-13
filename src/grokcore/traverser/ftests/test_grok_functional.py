@@ -1,5 +1,6 @@
+import doctest
 import re
-import unittest, doctest
+import unittest
 import grokcore.traverser
 
 from pkg_resources import resource_listdir
@@ -12,6 +13,7 @@ checker = renormalizing.RENormalizing([
     # Accommodate to exception wrapping in newer versions of mechanize
     (re.compile(r'httperror_seek_wrapper:', re.M), 'HTTPError:'),
     ])
+
 
 def http_call(method, path, data=None, **kw):
     """Function to help make RESTful calls.
@@ -32,6 +34,7 @@ def http_call(method, path, data=None, **kw):
         request_string += data
     return http(request_string, handle_errors=False)
 
+
 def suiteFromPackage(name):
     files = resource_listdir(__name__, name)
     suite = unittest.TestSuite()
@@ -48,13 +51,14 @@ def suiteFromPackage(name):
             extraglobs=dict(http_call=http_call,
                             http=http,
                             getRootFolder=FunctionalLayer.getRootFolder),
-            optionflags=(doctest.ELLIPSIS+
-                         doctest.NORMALIZE_WHITESPACE+
+            optionflags=(doctest.ELLIPSIS +
+                         doctest.NORMALIZE_WHITESPACE +
                          doctest.REPORT_NDIFF))
         test.layer = FunctionalLayer
 
         suite.addTest(test)
     return suite
+
 
 def test_suite():
     suite = unittest.TestSuite()
