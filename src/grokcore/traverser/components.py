@@ -18,7 +18,8 @@ classes they define each typically inherit from one of the base classes
 provided here.
 """
 
-from zope import component, interface
+from zope import component
+import zope.interface
 from grokcore.rest import IRESTLayer
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.defaultview import getDefaultViewName
@@ -31,9 +32,9 @@ from grokcore.component.interfaces import IContext
 from zope.container.interfaces import IContainer
 
 
+@zope.interface.implementer(IBrowserPublisher)
 class Traverser(object):
     """Base class for traversers in Grok applications."""
-    interface.implements(IBrowserPublisher)
 
     def __init__(self, context, request):
         self.context = context
