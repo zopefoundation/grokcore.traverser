@@ -4,7 +4,7 @@ also create a separate traverser component:
 
   >>> getRootFolder()["herd"] = Herd('The Big Mammoth Herd')
 
-  >>> from zope.app.wsgi.testlayer import Browser
+  >>> from zope.testbrowser.wsgi import Browser
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/herd/manfred")

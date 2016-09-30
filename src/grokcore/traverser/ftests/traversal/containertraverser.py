@@ -9,7 +9,7 @@ method returns None:
 
 Let's first try to look up the special traversed item:
 
-  >>> from zope.app.wsgi.testlayer import Browser
+  >>> from zope.testbrowser.wsgi import Browser
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/herd/special")
