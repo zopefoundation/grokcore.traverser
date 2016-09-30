@@ -43,7 +43,7 @@ def warn(message, category=None, stacklevel=1):
 
     When zope.deprecation is fixed, this warn function can be removed again.
     """
-    print "From grok.testing's warn():"
+    print("From grok.testing's warn():")
 
     frame = sys._getframe(stacklevel)
     path = frame.f_globals['__file__']
@@ -55,7 +55,7 @@ def warn(message, category=None, stacklevel=1):
     for i in range(lineno):
         line = file.readline()
 
-    print "%s:%s: %s: %s\n  %s" % (
+    print("{}:{}: {}: {}\n  {}").format(
         path,
         frame.f_lineno,
         category.__name__,
