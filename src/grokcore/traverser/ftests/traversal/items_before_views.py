@@ -8,33 +8,33 @@ Zope 3 paradigm"items before views" is supported in the fallback.
   >>> herd['manfred'] = Mammoth('Manfred')
   >>> herd['ellie'] = Mammoth('Ellie')
 
-  >>> from zope.app.wsgi.testlayer import Browser
+  >>> from zope.testbrowser.wsgi import Browser
   >>> browser = Browser()
   >>> browser.handleErrors = False
 
 When we look up 'manfred', we'll get the Mammoth object as expected:
 
   >>> browser.open("http://localhost/herd/manfred")
-  >>> print browser.contents
+  >>> print(browser.contents)
   Hello Manfred
 
 When we look up 'ellie', we also get a Mammoth object and not the
 Ellie view:
 
   >>> browser.open("http://localhost/herd/ellie")
-  >>> print browser.contents
+  >>> print(browser.contents)
   Hello Ellie
 
 We can, of course, get to the Ellie view explicitly:
 
   >>> browser.open("http://localhost/herd/@@ellie")
-  >>> print browser.contents
+  >>> print(browser.contents)
   Hi, it's me, the Ellie view!
 
 """
 import grokcore.component as grok
 import grokcore.content as content
-import grokcore.view as view 
+import grokcore.view as view
 import grokcore.traverser
 
 class Herd(content.Container):

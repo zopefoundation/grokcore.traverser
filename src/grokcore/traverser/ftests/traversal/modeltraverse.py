@@ -4,11 +4,11 @@ implementing a 'traverse' method:
 
   >>> getRootFolder()["herd"] = Herd('The Big Mammoth Herd')
 
-  >>> from zope.app.wsgi.testlayer import Browser
+  >>> from zope.testbrowser.wsgi import Browser
   >>> browser = Browser()
   >>> browser.handleErrors = False
   >>> browser.open("http://localhost/herd/manfred")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <h1>Hello, Manfred!</h1>
@@ -17,7 +17,7 @@ implementing a 'traverse' method:
   </html>
 
   >>> browser.open("http://localhost/herd/ellie")
-  >>> print browser.contents
+  >>> print(browser.contents)
   <html>
   <body>
   <h1>Hello, Ellie!</h1>
@@ -28,7 +28,7 @@ implementing a 'traverse' method:
 """
 import grokcore.component as grok
 import grokcore.content as content
-import grokcore.view as view 
+import grokcore.view as view
 
 class Herd(content.Model):
 
@@ -40,7 +40,7 @@ class Herd(content.Model):
 
     def traverse(self, name):
         return self.getMammoth(name)
-    
+
 class Mammoth(content.Model):
 
     def __init__(self, name):

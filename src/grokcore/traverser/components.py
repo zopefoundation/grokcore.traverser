@@ -18,22 +18,24 @@ classes they define each typically inherit from one of the base classes
 provided here.
 """
 
-from zope import component, interface
-from grokcore.rest import IRESTLayer
-from zope.publisher.interfaces.browser import IBrowserPublisher
+import zope.interface
+
+from grokcore.component.interfaces import IContext
+from grokcore.traverser import traversable
+from grokcore.traverser.interfaces import IRESTLayer
+from grokcore.traverser.util import safely_locate_maybe
+from zope import component
+from zope.container.interfaces import IContainer
+from zope.container.interfaces import IReadContainer
 from zope.publisher.defaultview import getDefaultViewName
 from zope.publisher.interfaces import NotFound
-from grokcore.traverser.util import safely_locate_maybe
-from grokcore.traverser import traversable
-from zope.container.interfaces import IReadContainer
+from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.http import IHTTPRequest
-from grokcore.component.interfaces import IContext
-from zope.container.interfaces import IContainer
 
 
+@zope.interface.implementer(IBrowserPublisher)
 class Traverser(object):
     """Base class for traversers in Grok applications."""
-    interface.implements(IBrowserPublisher)
 
     def __init__(self, context, request):
         self.context = context

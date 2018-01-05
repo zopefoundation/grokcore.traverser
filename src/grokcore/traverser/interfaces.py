@@ -13,22 +13,32 @@
 ##############################################################################
 """Grok interfaces
 """
-from zope import interface
-
-# Expose interfaces from grokcore.* packages as well:
 import grokcore.component.interfaces
 import grokcore.security.interfaces
 import grokcore.view.interfaces
 
+from zope import interface
+from zope.publisher.interfaces.http import IHTTPRequest
 
-class IBaseClasses(grokcore.component.interfaces.IBaseClasses,
-                   grokcore.security.interfaces.IBaseClasses,
-                   grokcore.view.interfaces.IBaseClasses):
+
+class IBaseClasses(
+        grokcore.component.interfaces.IBaseClasses,
+        grokcore.security.interfaces.IBaseClasses,
+        grokcore.view.interfaces.IBaseClasses):
+
     Traverser = interface.Attribute("Base class for custom traversers.")
 
 
-class IGrokTraverser(grokcore.component.interfaces.IGrokcoreComponentAPI,
-                     grokcore.security.interfaces.IGrokcoreSecurityAPI,
-                     grokcore.view.interfaces.IGrokcoreViewAPI,
-                     IBaseClasses):
+class IGrokTraverser(
+        grokcore.component.interfaces.IGrokcoreComponentAPI,
+        grokcore.security.interfaces.IGrokcoreSecurityAPI,
+        grokcore.view.interfaces.IGrokcoreViewAPI,
+        IBaseClasses):
     pass
+
+
+class IRESTLayer(IHTTPRequest):
+    """REST-specific Request functionality.
+
+    Base Interfaces for defining REST-layers.
+    """

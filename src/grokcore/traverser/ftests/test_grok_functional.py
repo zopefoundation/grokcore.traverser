@@ -6,8 +6,14 @@ import grokcore.traverser
 from pkg_resources import resource_listdir
 from zope.testing import renormalizing
 from zope.app.wsgi.testlayer import BrowserLayer, http
+import zope.testbrowser.wsgi
 
-FunctionalLayer = BrowserLayer(grokcore.traverser)
+class Layer(
+    zope.testbrowser.wsgi.TestBrowserLayer,
+    zope.app.wsgi.testlayer.BrowserLayer):
+    pass
+
+layer = Layer(grokcore.traverser)
 
 checker = renormalizing.RENormalizing([
     # Accommodate to exception wrapping in newer versions of mechanize
@@ -50,11 +56,11 @@ def suiteFromPackage(name):
             checker=checker,
             extraglobs=dict(http_call=http_call,
                             http=http,
-                            getRootFolder=FunctionalLayer.getRootFolder),
+                            getRootFolder=layer.getRootFolder),
             optionflags=(doctest.ELLIPSIS +
                          doctest.NORMALIZE_WHITESPACE +
                          doctest.REPORT_NDIFF))
-        test.layer = FunctionalLayer
+        test.layer = layer
 
         suite.addTest(test)
     return suite
