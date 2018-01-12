@@ -11,17 +11,3 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Grok
-"""
-from grokcore.component import *
-from grokcore.security import *
-from grokcore.view import *
-
-from grokcore.traverser.directive import traversable
-from grokcore.traverser.components import Traverser
-
-from grokcore.traverser.interfaces import IGrokTraverser
-from grokcore.traverser.interfaces import IRESTLayer
-from zope.interface import moduleProvides
-moduleProvides(IGrokTraverser)
-__all__ = list(IGrokTraverser)
