@@ -5,12 +5,13 @@ import grokcore.traverser
 
 from pkg_resources import resource_listdir
 from zope.testing import renormalizing
-from zope.app.wsgi.testlayer import BrowserLayer, http
+from zope.app.wsgi.testlayer import http
 import zope.testbrowser.wsgi
 
+
 class Layer(
-    zope.testbrowser.wsgi.TestBrowserLayer,
-    zope.app.wsgi.testlayer.BrowserLayer):
+        zope.testbrowser.wsgi.TestBrowserLayer,
+        zope.app.wsgi.testlayer.BrowserLayer):
     pass
 
 layer = Layer(grokcore.traverser)
@@ -42,7 +43,8 @@ def http_call(method, path, data=None, **kw):
 
 
 def suiteFromPackage(name):
-    files = resource_listdir(__name__, name)
+    layer_dir = 'functional'
+    files = resource_listdir(__name__, '{}/{}'.format(layer_dir, name))
     suite = unittest.TestSuite()
     for filename in files:
         if not filename.endswith('.py'):
@@ -50,14 +52,16 @@ def suiteFromPackage(name):
         if filename == '__init__.py':
             continue
 
-        dottedname = 'grokcore.traverser.ftests.%s.%s' % (name, filename[:-3])
+        dottedname = 'grokcore.traverser.tests.%s.%s.%s' % (
+            layer_dir, name, filename[:-3])
         test = doctest.DocTestSuite(
             dottedname,
             checker=checker,
             extraglobs=dict(http_call=http_call,
                             http=http,
                             getRootFolder=layer.getRootFolder),
-            optionflags=(doctest.ELLIPSIS +
+            optionflags=(renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2 +
+                         doctest.ELLIPSIS +
                          doctest.NORMALIZE_WHITESPACE +
                          doctest.REPORT_NDIFF))
         test.layer = layer
