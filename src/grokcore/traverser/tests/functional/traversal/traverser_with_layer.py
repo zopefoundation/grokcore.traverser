@@ -12,7 +12,11 @@ also create a separate traverser component:
   <html>
   <body>
   <h1>Hello, Manfred!</h1>
-  <p>Manfred is part of The Big Mammoth Herd.</p>
+  <p>
+    Manfred
+    is part of
+    The Big Mammoth Herd.
+  </p>
   </body>
   </html>
 
@@ -21,7 +25,11 @@ also create a separate traverser component:
   <html>
   <body>
   <h1>Hello, Ellie!</h1>
-  <p>Ellie is part of The Big Mammoth Herd.</p>
+  <p>
+    Ellie
+    is part of
+    The Big Mammoth Herd.
+  </p>
   </body>
   </html>
 
@@ -32,7 +40,11 @@ Now let's call the same URI on a different Layer.
   <html>
   <body>
   <h1>Hello, Ellie Elephant!</h1>
-  <p>Ellie Elephant is part of The Big Mammoth Herd.</p>
+  <p>
+    Ellie Elephant
+    is part of
+    The Big Mammoth Herd.
+  </p>
   </body>
   </html>
 """
@@ -44,6 +56,7 @@ import grokcore.view as view
 
 class ElephantLayer(view.IDefaultBrowserLayer):
     pass
+
 
 class ElephantSkin(ElephantLayer):
     view.skin('elephant')
@@ -75,16 +88,23 @@ class Mammoth(content.Model):
     def __init__(self, name):
         self.name = name
 
+
 grok.context(Mammoth)
+
 
 class Index(view.View):
     pass
+
 
 index = view.PageTemplate("""\
 <html>
 <body>
 <h1>Hello, <span tal:replace="context/name/title" />!</h1>
-<p><span tal:replace="context/name/title" /> is part of <span tal:replace="context/__parent__/name" />.</p>
+<p>
+  <span tal:replace="context/name/title" />
+  is part of
+  <span tal:replace="context/__parent__/name" />.
+</p>
 </body>
 </html>
 """)

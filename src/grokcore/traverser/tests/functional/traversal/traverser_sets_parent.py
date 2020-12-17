@@ -12,7 +12,11 @@ in which case Grok's traverser won't interfere:
   <html>
   <body>
   <h1>Hello, Manfred!</h1>
-  <p>Manfred is part of The Three Stooges.</p>
+  <p>
+    Manfred
+    is part of
+    The Three Stooges.
+  </p>
   </body>
   </html>
 
@@ -21,7 +25,11 @@ in which case Grok's traverser won't interfere:
   <html>
   <body>
   <h1>Hello, Ellie!</h1>
-  <p>Ellie is part of The Three Stooges.</p>
+  <p>
+    Ellie
+    is part of
+    The Three Stooges.
+  </p>
   </body>
   </html>
 
@@ -31,10 +39,12 @@ import grokcore.content as content
 import grokcore.traverser
 import grokcore.view as view
 
+
 class Herd(content.Model):
 
     def __init__(self, name):
         self.name = name
+
 
 class HerdTraverser(grokcore.traverser.Traverser):
     grok.context(Herd)
@@ -46,21 +56,29 @@ class HerdTraverser(grokcore.traverser.Traverser):
         mammoth.__parent__ = Herd('The Three Stooges')
         return mammoth
 
+
 class Mammoth(content.Model):
 
     def __init__(self, name):
         self.name = name
 
+
 grok.context(Mammoth)
+
 
 class Index(view.View):
     pass
+
 
 index = view.PageTemplate("""\
 <html>
 <body>
 <h1>Hello, <span tal:replace="context/name/title" />!</h1>
-<p><span tal:replace="context/name/title" /> is part of <span tal:replace="context/__parent__/name" />.</p>
+<p>
+  <span tal:replace="context/name/title" />
+  is part of
+  <span tal:replace="context/__parent__/name" />.
+</p>
 </body>
 </html>
 """)

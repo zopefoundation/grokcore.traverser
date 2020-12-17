@@ -12,7 +12,9 @@ class Layer(
         zope.app.wsgi.testlayer.BrowserLayer):
     pass
 
+
 layer = Layer(grokcore.traverser)
+
 
 def http_call(method, path, data=None, **kw):
     """Function to help make RESTful calls.
@@ -66,6 +68,3 @@ def test_suite():
     for name in ['traversal']:
         suite.addTest(suiteFromPackage(name))
     return suite
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')

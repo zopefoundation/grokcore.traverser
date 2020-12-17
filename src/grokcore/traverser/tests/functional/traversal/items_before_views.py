@@ -2,7 +2,7 @@
 Containers can have an explicit traverser associated with them.  The
 behaviour falls back to basic container traversal if the 'traverse'
 method returns None. Normal behaviour also means that the standard
-Zope 3 paradigm"items before views" is supported in the fallback.
+Zope 3 paradigm "items before views" is supported in the fallback.
 
   >>> getRootFolder()["herd"] = herd = Herd()
   >>> herd['manfred'] = Mammoth('Manfred')
@@ -37,8 +37,10 @@ import grokcore.content as content
 import grokcore.view as view
 import grokcore.traverser
 
+
 class Herd(content.Container):
     pass
+
 
 class Traverser(grokcore.traverser.Traverser):
     grok.context(Herd)
@@ -48,6 +50,7 @@ class Traverser(grokcore.traverser.Traverser):
         # the fallback behaviour
         pass
 
+
 class Ellie(view.View):
     grok.context(Herd)
     grok.name('ellie')
@@ -55,9 +58,11 @@ class Ellie(view.View):
     def render(self):
         return "Hi, it's me, the Ellie view!"
 
+
 class Mammoth(content.Model):
     def __init__(self, name):
         self.name = name
+
 
 class MammothIndex(view.View):
     grok.context(Mammoth)

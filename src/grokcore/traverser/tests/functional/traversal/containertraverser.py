@@ -62,22 +62,28 @@ import grokcore.traverser
 import grokcore.content as content
 import grokcore.view as view
 
+
 class Herd(content.Container):
     pass
 
+
 class Traverser(grokcore.traverser.Traverser):
     grok.context(Herd)
+
     def traverse(self, name):
         if name == 'special':
             return Special()
         return None
 
+
 class Mammoth(content.Model):
     def __init__(self, name):
         self.name = name
 
+
 class Special(content.Model):
     pass
+
 
 class SpecialIndex(view.View):
     grok.context(Special)
@@ -86,10 +92,13 @@ class SpecialIndex(view.View):
     def render(self):
         return "special view"
 
+
 grok.context(Mammoth)
+
 
 class Index(view.View):
     pass
+
 
 index = view.PageTemplate("""\
 <html>
