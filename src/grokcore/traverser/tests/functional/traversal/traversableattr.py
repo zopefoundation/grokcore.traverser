@@ -39,9 +39,11 @@ import grokcore.content as content
 import grokcore.view as view
 import grokcore.traverser
 
+
 class Bar(content.Model):
     def __init__(self, name):
         self.name = name
+
 
 class BarIndex(view.View):
     grok.context(Bar)
@@ -49,6 +51,7 @@ class BarIndex(view.View):
 
     def render(self):
         return self.context.name
+
 
 class Foo(content.Model):
     grokcore.traverser.traversable('bar')
@@ -59,12 +62,15 @@ class Foo(content.Model):
         self.name = name
 
     foo = Bar('foo')
+
     def bar(self):
         return Bar('bar')
     z = "i'm not called"
 
+
 class FooIndex(view.View):
     grok.context(Foo)
     grok.name('index')
+
     def render(self):
         return self.context.name

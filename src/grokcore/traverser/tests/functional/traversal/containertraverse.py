@@ -69,6 +69,7 @@ class Herd(content.Container):
             return Special()
         return None
 
+
 class HerdIndex(view.View):
     grok.context(Herd)
     grok.name('index')
@@ -76,13 +77,16 @@ class HerdIndex(view.View):
     def render(self):
         return 'A herd'
 
+
 class Mammoth(content.Model):
 
     def __init__(self, name):
         self.name = name
 
+
 class Special(content.Model):
     pass
+
 
 class SpecialIndex(view.View):
     grok.context(Special)
@@ -91,10 +95,13 @@ class SpecialIndex(view.View):
     def render(self):
         return "special view"
 
+
 grok.context(Mammoth)
+
 
 class Index(view.View):
     pass
+
 
 index = view.PageTemplate("""\
 <html>

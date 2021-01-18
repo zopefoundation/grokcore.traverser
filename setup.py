@@ -13,23 +13,25 @@ long_description = (
     + '\n' +
     'Download\n'
     '********\n'
-    )
+)
 
 
 tests_require = [
     'grokcore.content',
-    'grokcore.view[security_publication]',
-    'grokcore.view[test]',
+    'grokcore.view [test]',
     'zope.app.appsetup',
     'zope.app.wsgi',
+    'zope.login',
+    'zope.principalregistry',
+    'zope.securitypolicy',
     'zope.testbrowser',
     'zope.testing',
-    ]
+]
 
 
 setup(
     name='grokcore.traverser',
-    version='3.0.2.dev0',
+    version='3.1.0.dev0',
     author='Grok Team',
     author_email='grok-dev@zope.org',
     url='http://grok.zope.org',
@@ -45,14 +47,16 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Framework :: Zope :: 3',
-        ],
+    ],
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['grokcore'],
@@ -67,7 +71,7 @@ setup(
         'zope.component',
         'zope.interface',
         'zope.publisher',
-        ],
+    ],
     tests_require=tests_require,
     extras_require={'test': tests_require},
 )

@@ -12,7 +12,11 @@ also create a separate traverser component:
   <html>
   <body>
   <h1>Hello, Manfred!</h1>
-  <p>Manfred is part of The Big Mammoth Herd.</p>
+  <p>
+    Manfred
+    is part of
+    The Big Mammoth Herd.
+  </p>
   </body>
   </html>
 
@@ -21,7 +25,11 @@ also create a separate traverser component:
   <html>
   <body>
   <h1>Hello, Ellie!</h1>
-  <p>Ellie is part of The Big Mammoth Herd.</p>
+  <p>
+    Ellie
+    is part of
+    The Big Mammoth Herd.
+  </p>
   </body>
   </html>
 
@@ -31,10 +39,12 @@ import grokcore.content as content
 import grokcore.traverser
 import grokcore.view as view
 
+
 class Herd(content.Model):
 
     def __init__(self, name):
         self.name = name
+
 
 class HerdTraverser(grokcore.traverser.Traverser):
     grok.context(Herd)
@@ -42,21 +52,29 @@ class HerdTraverser(grokcore.traverser.Traverser):
     def traverse(self, name):
         return Mammoth(name)
 
+
 class Mammoth(content.Model):
 
     def __init__(self, name):
         self.name = name
 
+
 grok.context(Mammoth)
+
 
 class Index(view.View):
     pass
+
 
 index = view.PageTemplate("""\
 <html>
 <body>
 <h1>Hello, <span tal:replace="context/name/title" />!</h1>
-<p><span tal:replace="context/name/title" /> is part of <span tal:replace="context/__parent__/name" />.</p>
+<p>
+  <span tal:replace="context/name/title" />
+  is part of
+  <span tal:replace="context/__parent__/name" />.
+</p>
 </body>
 </html>
 """)

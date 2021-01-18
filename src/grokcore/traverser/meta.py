@@ -27,7 +27,6 @@ import grokcore.view
 import grokcore.traverser
 import grokcore.component
 
-from zope.publisher.interfaces.http import IHTTPRequest
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
@@ -44,5 +43,5 @@ class TraverserGrokker(martian.ClassGrokker):
             discriminator=('adapter', adapts, IBrowserPublisher, ''),
             callable=grokcore.component.provideAdapter,
             args=(factory, adapts, IBrowserPublisher),
-            )
+        )
         return True
