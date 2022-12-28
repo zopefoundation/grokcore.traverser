@@ -50,8 +50,9 @@ Now let's call the same URI on a different Layer.
 """
 import grokcore.component as grok
 import grokcore.content as content
-import grokcore.traverser
 import grokcore.view as view
+
+import grokcore.traverser
 
 
 class ElephantLayer(view.IDefaultBrowserLayer):

@@ -16,7 +16,6 @@
 import grokcore.component.interfaces
 import grokcore.security.interfaces
 import grokcore.view.interfaces
-
 from zope import interface
 from zope.publisher.interfaces.http import IHTTPRequest
 

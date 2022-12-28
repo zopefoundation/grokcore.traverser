@@ -36,8 +36,9 @@ in which case Grok's traverser won't interfere:
 """
 import grokcore.component as grok
 import grokcore.content as content
-import grokcore.traverser
 import grokcore.view as view
+
+import grokcore.traverser
 
 
 class Herd(content.Model):

@@ -58,8 +58,8 @@ as a subitem of a container:
 
 """
 import grokcore.component as grok
-import grokcore.view as view
 import grokcore.content as content
+import grokcore.view as view
 
 
 class Herd(content.Container):
