@@ -19,6 +19,7 @@ provided here.
 """
 
 import zope.interface
+from grokcore.component.interfaces import IContext
 from zope import component
 from zope.container.interfaces import IContainer
 from zope.container.interfaces import IReadContainer
@@ -27,14 +28,13 @@ from zope.publisher.interfaces import NotFound
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.http import IHTTPRequest
 
-from grokcore.component.interfaces import IContext
-from grokcore.traverser import traversable
+import grokcore.traverser
 from grokcore.traverser.interfaces import IRESTLayer
 from grokcore.traverser.util import safely_locate_maybe
 
 
 @zope.interface.implementer(IBrowserPublisher)
-class Traverser(object):
+class Traverser:
     """Base class for traversers in Grok applications."""
 
     def __init__(self, context, request):
@@ -58,7 +58,8 @@ class Traverser(object):
         if subob is not None:
             return safely_locate_maybe(subob, self.context, name)
 
-        traversable_dict = traversable.bind().get(self.context)
+        traversable_dict = grokcore.traverser.traversable.bind().get(
+            self.context)
         if traversable_dict:
             if name in traversable_dict:
                 subob = getattr(self.context, traversable_dict[name])

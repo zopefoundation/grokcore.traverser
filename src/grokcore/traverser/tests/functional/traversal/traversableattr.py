@@ -36,8 +36,9 @@ Finally, attributes which are not exposed, should not be visible:
 """
 import grokcore.component as grok
 import grokcore.content as content
-import grokcore.traverser
 import grokcore.view as view
+
+import grokcore.traverser
 
 
 class Bar(content.Model):
