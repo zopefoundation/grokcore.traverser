@@ -1,10 +1,12 @@
 import doctest
 import unittest
-import grokcore.traverser
 
 from pkg_resources import resource_listdir
-from zope.app.wsgi.testlayer import http
+
 import zope.testbrowser.wsgi
+from zope.app.wsgi.testlayer import http
+
+import grokcore.traverser
 
 
 class Layer(

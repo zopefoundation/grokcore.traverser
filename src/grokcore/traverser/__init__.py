@@ -13,15 +13,16 @@
 ##############################################################################
 """Grok
 """
+from zope.interface import moduleProvides
+
 from grokcore.component import *
 from grokcore.security import *
-from grokcore.view import *
-
-from grokcore.traverser.directive import traversable
 from grokcore.traverser.components import Traverser
-
+from grokcore.traverser.directive import traversable
 from grokcore.traverser.interfaces import IGrokTraverser
 from grokcore.traverser.interfaces import IRESTLayer
-from zope.interface import moduleProvides
+from grokcore.view import *
+
+
 moduleProvides(IGrokTraverser)
 __all__ = list(IGrokTraverser)

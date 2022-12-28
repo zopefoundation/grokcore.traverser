@@ -58,8 +58,8 @@ as a subitem of a container:
 
 """
 import grokcore.component as grok
-import grokcore.traverser
 import grokcore.content as content
+import grokcore.traverser
 import grokcore.view as view
 
 

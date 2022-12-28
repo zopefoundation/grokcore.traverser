@@ -23,12 +23,12 @@ of a Grok-based web application.
 """
 
 import martian
-import grokcore.view
-import grokcore.traverser
-import grokcore.component
-
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+
+import grokcore.component
+import grokcore.traverser
+import grokcore.view
 
 
 class TraverserGrokker(martian.ClassGrokker):

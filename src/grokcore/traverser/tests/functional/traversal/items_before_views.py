@@ -34,8 +34,8 @@ We can, of course, get to the Ellie view explicitly:
 """
 import grokcore.component as grok
 import grokcore.content as content
-import grokcore.view as view
 import grokcore.traverser
+import grokcore.view as view
 
 
 class Herd(content.Container):

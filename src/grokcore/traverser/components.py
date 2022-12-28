@@ -19,11 +19,6 @@ provided here.
 """
 
 import zope.interface
-
-from grokcore.component.interfaces import IContext
-from grokcore.traverser import traversable
-from grokcore.traverser.interfaces import IRESTLayer
-from grokcore.traverser.util import safely_locate_maybe
 from zope import component
 from zope.container.interfaces import IContainer
 from zope.container.interfaces import IReadContainer
@@ -31,6 +26,11 @@ from zope.publisher.defaultview import getDefaultViewName
 from zope.publisher.interfaces import NotFound
 from zope.publisher.interfaces.browser import IBrowserPublisher
 from zope.publisher.interfaces.http import IHTTPRequest
+
+from grokcore.component.interfaces import IContext
+from grokcore.traverser import traversable
+from grokcore.traverser.interfaces import IRESTLayer
+from grokcore.traverser.util import safely_locate_maybe
 
 
 @zope.interface.implementer(IBrowserPublisher)
