@@ -9,12 +9,9 @@ def read(*rnames):
 
 
 long_description = (
-    read('README.txt')
+    read('README.rst')
     + '\n' +
-    read('CHANGES.txt')
-    + '\n' +
-    'Download\n'
-    '********\n'
+    read('CHANGES.rst')
 )
 
 
@@ -35,9 +32,8 @@ setup(
     name='grokcore.traverser',
     version='4.0.dev0',
     author='Grok Team',
-    author_email='grok-dev@zope.org',
-    url='http://grok.zope.org',
-    download_url='http://cheeseshop.python.org/pypi/grok/',
+    author_email='zope-dev@zope.dev',
+    url='https://github.com/zopefoundation/grokcore.traverser',
     description='Traverser for the Grok Framework',
     long_description=long_description,
     license='ZPL',
@@ -62,8 +58,9 @@ setup(
     namespace_packages=['grokcore'],
     include_package_data=True,
     zip_safe=False,
+    python_requires='>=3.7',
     install_requires=[
-        'grokcore.component >= 2.5dev',
+        'grokcore.component >= 2.5',
         'grokcore.security',
         'grokcore.view',
         'martian',
