@@ -1,7 +1,7 @@
 Changes
 *******
 
-4.0 (unreleased)
+4.0 (2023-07-11)
 ================
 
 - Add support for Python 3.11.
