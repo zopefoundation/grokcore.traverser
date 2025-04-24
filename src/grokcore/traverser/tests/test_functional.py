@@ -29,9 +29,9 @@ def http_call(method, path, data=None, **kw):
 
     if path.startswith('http://localhost'):
         path = path[len('http://localhost'):]
-    request_string = '{} {} HTTP/1.1\n'.format(method, path)
+    request_string = f'{method} {path} HTTP/1.1\n'
     for key, value in kw.items():
-        request_string += '{}: {}\n'.format(key, value)
+        request_string += f'{key}: {value}\n'
     if data is not None:
         request_string += '\r\n'
         request_string += data
