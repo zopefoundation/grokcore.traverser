@@ -1,7 +1,6 @@
 import doctest
 import unittest
-
-from pkg_resources import resource_listdir
+from importlib.resources import files
 
 import zope.testbrowser.wsgi
 from zope.app.wsgi.testlayer import http
@@ -40,9 +39,11 @@ def http_call(method, path, data=None, **kw):
 
 def suiteFromPackage(name):
     layer_dir = 'functional'
-    files = resource_listdir(__name__, f'{layer_dir}/{name}')
+    package_files = files('grokcore.traverser.tests').joinpath(
+        f'{layer_dir}/{name}')
+    files_list = sorted([f.name for f in package_files.iterdir()])
     suite = unittest.TestSuite()
-    for filename in files:
+    for filename in files_list:
         if not filename.endswith('.py'):
             continue
         if filename == '__init__.py':
